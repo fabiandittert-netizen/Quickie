@@ -78,6 +78,14 @@
   <h1>Quickie</h1>
   <h2>by Schmittert Spiele</h2>
 
+  <!-- Roter Button -->
+  <button onclick="toggleRules()" 
+        style="display:block; width:100%; padding:12px; 
+               background:#d60000; color:white; font-size:1.1rem; 
+               border:none; border-radius:8px; margin:15px 0;">
+    RULES anzeigen
+  </button>
+
   <input class="name-input" type="text" placeholder="Name eintragen">
 
   <table>
@@ -143,29 +151,73 @@
   </table>
 </div>
 
+<!-- RULES-Bereich -->
+<section id="rules" 
+         style="max-width:480px; margin:20px auto; background:white; 
+                padding:15px; border-radius:12px; box-shadow:0 0 10px rgba(0,0,0,0.1); 
+                display:none;">
+
+<h2 style="text-align:center; margin-top:0;">Spielerklärung</h2>
+
+<p>
+Es gibt Momente im Leben, liebe Kniffelinge,  
+an denen der eine Weg nach LINKS und der andere  
+nach B; C; D oder Q kommt.  
+Ob es gut ist oder besser, zuck die Achseln und die  
+Schulter, es IST! Auf Jeden Fall.  
+Drum tut gutes jeden Tag und macht einen Quickie*
+</p>
+
+<p><strong>FAQ:</strong><br>
+alle Augen zählen grundsätzlich immer.<br>
+alle anderen Fragen: „Klärt ihr bitte selbst!“ oder „Selber“
+</p>
+
+<p>
+Have fun, enjoy, geht wählen – nur demokratisch – und esst Gemüse,  
+aber zwingt es keinem auf. Außer euren Kindern.
+</p>
+
+<p>
+post scortum: walk the LINE , its 4 also u!
+</p>
+
+<p>
+*BoomBastic5 ist urheberrechtlich geschützte Marke, von den EXIT-Pfeifen.  
+War letztens mit denen im Club, viele Bahnen geschwommen,  
+haben nicht mehr rausgefunden, auch nicht mit nem Tipp.**
+</p>
+
+<p>**ist alles nicht Wahr!**<br>
+***vielleicht
+</p>
+
+</section>
+
 <script>
+function toggleRules() {
+  const box = document.getElementById('rules');
+  box.style.display = (box.style.display === "none") ? "block" : "none";
+}
+
 function calc() {
   const eyes = document.querySelectorAll('.eyes');
   const pts = document.querySelectorAll('.pts');
 
   let sum = 0;
 
-  // Grundpunkte
   pts[0].value = Number(eyes[0].value) || 0;
   pts[1].value = (Number(eyes[1].value) || 0) * 2;
   pts[2].value = (Number(eyes[2].value) || 0) * 3;
   pts[3].value = (Number(eyes[3].value) || 0) * 4;
 
-  // BoomBastic Five
   pts[4].value = (Number(eyes[4].value) > 0) ? 100 : 0;
 
-  // Bonuspunkte nur wenn Eingabe vorhanden
   pts[5].value = (Number(eyes[5].value) > 0) ? Number(eyes[5].value) + 25 : 0;
   pts[6].value = (Number(eyes[6].value) > 0) ? Number(eyes[6].value) + 15 : 0;
   pts[7].value = (Number(eyes[7].value) > 0) ? Number(eyes[7].value) + 30 : 0;
   pts[8].value = (Number(eyes[8].value) > 0) ? Number(eyes[8].value) + 40 : 0;
 
-  // Gesamt
   pts.forEach(p => sum += Number(p.value) || 0);
   document.getElementById('total').value = sum;
 }
